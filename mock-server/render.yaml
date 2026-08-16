@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: kapture-collections-webhook
+    env: node
+    plan: free
+    rootDir: mock-server
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /health
+    envVars:
+      - key: WEBHOOK_SECRET
+        sync: false
+      - key: ALLOWED_ORIGINS
+        sync: false

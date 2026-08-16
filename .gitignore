@@ -1,0 +1,5 @@
+node_modules/
+mock-server/data/
+.env
+*.log
+.DS_Store

@@ -1,0 +1,115 @@
+[
+  {
+    "type": "function",
+    "function": {
+      "name": "verify_customer",
+      "description": "Verifies customer identity against the account record using the last 4 digits of PAN or birth year before revealing any debt details. Must be called before any debt-related disclosure or tool.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "account_id": {
+            "type": "string",
+            "description": "The customer's unique account ID, e.g. ACC-88392"
+          },
+          "verification_code": {
+            "type": "string",
+            "description": "The 4-digit PAN code or birth year provided by the user."
+          }
+        },
+        "required": ["account_id", "verification_code"]
+      }
+    },
+    "server": {
+      "url": "https://YOUR_DEPLOYED_SERVER_URL/webhook"
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "log_promise_to_pay",
+      "description": "Logs the agreed promise-to-pay date and amount committed by the customer. Only call after verify_customer has returned verified:true in this call.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "account_id": { "type": "string" },
+          "ptp_date": {
+            "type": "string",
+            "description": "The ISO format date (YYYY-MM-DD) or descriptive date agreed upon for payment."
+          },
+          "amount": {
+            "type": "number",
+            "description": "The amount the customer agreed to pay."
+          }
+        },
+        "required": ["account_id", "ptp_date", "amount"]
+      }
+    },
+    "server": {
+      "url": "https://YOUR_DEPLOYED_SERVER_URL/webhook"
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "send_payment_link",
+      "description": "Triggers a payment link via SMS or WhatsApp to the customer's registered number. Only call after verify_customer has returned verified:true in this call.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "account_id": { "type": "string" },
+          "channel": {
+            "type": "string",
+            "enum": ["SMS", "WhatsApp", "BOTH"]
+          }
+        },
+        "required": ["account_id", "channel"]
+      }
+    },
+    "server": {
+      "url": "https://YOUR_DEPLOYED_SERVER_URL/webhook"
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "escalate_to_agent",
+      "description": "Routes a hardship or dispute case to a human agent queue and returns a ticket ID.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "account_id": { "type": "string" },
+          "reason": {
+            "type": "string",
+            "enum": ["HARDSHIP", "DISPUTE", "ABUSIVE_ESCALATION", "OTHER"]
+          }
+        },
+        "required": ["account_id", "reason"]
+      }
+    },
+    "server": {
+      "url": "https://YOUR_DEPLOYED_SERVER_URL/webhook"
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "mark_disposition",
+      "description": "Logs the final call outcome and disposition status in the database. Must be called exactly once before every call ends.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "account_id": { "type": "string" },
+          "status": {
+            "type": "string",
+            "enum": ["PTP_AGREED", "ALREADY_PAID", "DISPUTED", "HARDSHIP_ESCALATED", "WRONG_PERSON", "DO_NOT_CALL", "ABUSIVE_TERMINATED", "NO_RESPONSE"]
+          },
+          "notes": { "type": "string" }
+        },
+        "required": ["account_id", "status"]
+      }
+    },
+    "server": {
+      "url": "https://YOUR_DEPLOYED_SERVER_URL/webhook"
+    }
+  }
+]
