@@ -1,0 +1,133 @@
+{
+  "calls": [
+    {
+      "timestamp": "2026-08-17T19:18:02.723Z",
+      "tool": "verify_customer",
+      "args": {
+        "account_id": "ACC-88392",
+        "verification_code": "1234"
+      },
+      "result": {
+        "verified": true,
+        "message": "Identity verified successfully.",
+        "customer_name": "Rahul Sharma"
+      }
+    },
+    {
+      "timestamp": "2026-08-17T19:18:42.361Z",
+      "tool": "send_payment_link",
+      "args": {
+        "account_id": "ACC-88392",
+        "channel": "SMS"
+      },
+      "result": {
+        "success": true,
+        "link_sent": true,
+        "channel": "SMS",
+        "message": "Payment link sent via SMS to registered mobile number +91-98XXXXXX21."
+      }
+    },
+    {
+      "timestamp": "2026-08-17T19:18:43.821Z",
+      "tool": "mark_disposition",
+      "args": {
+        "account_id": "ACC-88392",
+        "status": "PTP_AGREED",
+        "notes": "Customer promised to pay full amount on Friday, 2024-06-14."
+      },
+      "result": {
+        "success": true,
+        "disposition_logged": "PTP_AGREED",
+        "timestamp": "2026-08-17T19:18:43.821Z"
+      }
+    },
+    {
+      "timestamp": "2026-08-17T19:19:58.643Z",
+      "tool": "verify_customer",
+      "args": {
+        "account_id": "ACC-88392",
+        "verification_code": "1234"
+      },
+      "result": {
+        "verified": true,
+        "message": "Identity verified successfully.",
+        "customer_name": "Rahul Sharma"
+      }
+    },
+    {
+      "timestamp": "2026-08-17T19:20:46.304Z",
+      "tool": "mark_disposition",
+      "args": {
+        "account_id": "ACC-88392",
+        "status": "ALREADY_PAID",
+        "notes": "Customer stated payment was made online."
+      },
+      "result": {
+        "success": true,
+        "disposition_logged": "ALREADY_PAID",
+        "timestamp": "2026-08-17T19:20:46.304Z"
+      }
+    },
+    {
+      "timestamp": "2026-08-17T19:23:31.964Z",
+      "tool": "verify_customer",
+      "args": {
+        "account_id": "ACC-88392",
+        "verification_code": "1234"
+      },
+      "result": {
+        "verified": true,
+        "message": "Identity verified successfully.",
+        "customer_name": "Rahul Sharma"
+      }
+    },
+    {
+      "timestamp": "2026-08-17T19:24:24.341Z",
+      "tool": "send_payment_link",
+      "args": {
+        "channel": "SMS",
+        "account_id": "ACC-88392"
+      },
+      "result": {
+        "success": true,
+        "link_sent": true,
+        "channel": "SMS",
+        "message": "Payment link sent via SMS to registered mobile number +91-98XXXXXX21."
+      }
+    },
+    {
+      "timestamp": "2026-08-17T19:24:25.365Z",
+      "tool": "mark_disposition",
+      "args": {
+        "status": "PTP_AGREED",
+        "notes": "Customer agreed to pay full overdue amount on 2024-06-14. Payment link sent via SMS.",
+        "account_id": "ACC-88392"
+      },
+      "result": {
+        "success": true,
+        "disposition_logged": "PTP_AGREED",
+        "timestamp": "2026-08-17T19:24:25.365Z"
+      }
+    }
+  ],
+  "dispositions": [
+    {
+      "account_id": "ACC-88392",
+      "status": "PTP_AGREED",
+      "notes": "Customer promised to pay full amount on Friday, 2024-06-14.",
+      "timestamp": "2026-08-17T19:18:43.821Z"
+    },
+    {
+      "account_id": "ACC-88392",
+      "status": "ALREADY_PAID",
+      "notes": "Customer stated payment was made online.",
+      "timestamp": "2026-08-17T19:20:46.304Z"
+    },
+    {
+      "account_id": "ACC-88392",
+      "status": "PTP_AGREED",
+      "notes": "Customer agreed to pay full overdue amount on 2024-06-14. Payment link sent via SMS.",
+      "timestamp": "2026-08-17T19:24:25.365Z"
+    }
+  ]
+}
