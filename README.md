@@ -1,7 +1,8 @@
 # Kapture Finance Collections Voicebot — "Maya"
 
 Outbound voice AI collections agent, built on [Vapi](https://vapi.ai). Authenticates the customer before disclosing any debt, negotiates a promise-to-pay, and logs a disposition on every call.
-
+https://github.com/Sonuanand07/kapture-collections-voicebot
+![alt text](docs/mermaid-diagram-1786995383070.png)
 - **Task 1 (HLD):** [`docs/HLD_Document.md`](docs/HLD_Document.md) + [`docs/System_Architecture.mmd`](docs/System_Architecture.mmd) (Mermaid sequence diagram — renders natively on GitHub, or paste into [mermaid.live](https://mermaid.live) to export a PNG).
 - **Task 2 (Build):** `vapi/` (system prompt + tool schemas) + `mock-server/` (deployable webhook backend).
 
